@@ -1,0 +1,22 @@
+<html>
+<body style = background-color:#40D8FE;> 
+<style>
+ h1{text-align: center; color:#f3f6f9;background-color:#3D4EF9; width:100%; height: 150px; }
+ h2{text-align: center;color:#070220}
+</style>
+<h1>Instrumenty:</h1>
+{% if instrument_list %}
+    <ul>
+    {% for instrument in instrument_list%}
+     <h2><a href="/instrumenty/Instrument{{Instrument.id}}"></a>>#{{Instrumenty.Instrument_name}}</a></h2>
+       
+    {% endfor%}
+    </ul>
+{% else %}
+    <p> No instrument </p>
+{% endif %}
+<center>
+    <img src="orkiestra.jpg" width="800" height="400">    
+</center>
+</body>
+</html>

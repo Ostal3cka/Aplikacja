@@ -1,25 +1,46 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect 
-from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
-from django.views import generic
-from .models import Rodzaj, Instrument, Muzyk 
-
-class RodzajView(generic.ListView):
-    template_name = 'rodzaj.html'
-    context_object_name = 'rodzaj_list'
-
-    def get_queryset(self):
-        return Rodzaj.objects.all()
+from django.http import HttpResponse 
+from .models import Rodzaje, Instruments, Muzycy
+from .forms import Form
+from django.template import loader
 
 
-class InstrumentView(generic.ListView):
-    context_object_name = 'instrument_list'
-    template_name = 'instrument.html'
-    
-    def get_queryset(self):
-        return Instrument.objects.all()
+def index(request):
+    index_list = 'Rodzaj', 'Instrument', 'Muzyk', 'Form'
+    template = loader.get_template('instrumenty/index.html')
+    context = {
+        'index_list': index_list,
+    }
+    return HttpResponse(template.render(context, request))
 
-class MuzykView(generic.DetailView):
-    model = Muzyk
-    template_name = 'muzyk.html'
+def Rodzaj(request):
+    rodzaj_list = Rodzajs.objects.all
+    template = loader.get_template('instrumenty/Rodzaj.html')
+    context = {
+        'rodzaj_list': rodzaj_list,
+    }
+    return HttpResponse(template.render(context, request))
+
+def Instrument(request):
+    instrument_list = Instrument.objects.all
+    template = loader.get_template('instrumenty/Instrument.html')
+    context = {
+        'instrument_list': instrument_list,
+    }
+    return HttpResponse(template.render(context, request))
+
+def Muzyk(request):
+    muzyk_list = Muzyk.objects.all
+    template = loader.get_template('instrumenty/Muzyk.html')
+    context = {
+        'muzyk_list': muzyk_list,
+    }
+    return HttpResponse(template.render(context, request))
+
+def form(request):
+    form_list= Form()
+    context = {
+        'form_list': form_list
+    }
+    return render(request,'instrumenty/form.html', context)
+

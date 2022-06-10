@@ -3,7 +3,9 @@ from . import views
 
 
 urlpatterns = [
-    path('rodzaj', views.Rodzaj.as_view(), name='rodzaj'),
-    path('<instrument', views.Instrument.as_view(), name='instrument'),
-    path('muzyk', views.Muzyk.as_view(), name='muzyk'),
+    path('', views.index, name='index'),
+    path('rodzaj/', views.Rodzaj, name='Rodzaj'),
+    path('instrument/', views.Instrument, name='Instrument'),
+    path('muzyk/', views.Muzyk, name='Muzyk'),
+    path('form/', views.form, name='form') 
     ]

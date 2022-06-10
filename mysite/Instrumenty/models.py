@@ -1,23 +1,25 @@
 from django.db import models
 
 # Create your models here.
-class Rodzaj(models.Model):
+class Rodzaje(models.Model):
     nazwa = models.CharField(max_length=200, null=True)
 
     def __str__(self):
         return self.nazwa
 
-class Instrument(models.Model):
+class Instruments(models.Model):
     nazwa = models.CharField(max_length=200, null=True)
     opis = models.CharField(max_length=500, null=True)
-    rodzaj = models.ForeignKey(Rodzaj, on_delete=models.CASCADE, null=True)
-    muzyk = models.ManyToManyField("Muzyk")
+    rodzaj = models.ForeignKey(Rodzaje, on_delete=models.CASCADE, null=True)
+    muzyk = models.ManyToManyField("Muzycy")
 
     def __str__(self):
         return self.nazwa
 
-class Muzyk(models.Model):
+class Muzycy(models.Model):
     nazwa = models.CharField(max_length=200, null=True)
+    opis = models.CharField(max_length=500, null=True)
+
 
     def __str__(self):
         return self.nazwa
